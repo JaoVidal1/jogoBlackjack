@@ -1,4 +1,4 @@
-angular.module('jogoblackjack').controller('mainController', function($scope, $http){
+angular.module('jogoBlackjack').controller('mainController', function($scope, $http){
     
         var DCartas = 2
         var DCartasValor = []
@@ -78,4 +78,41 @@ angular.module('jogoblackjack').controller('mainController', function($scope, $h
                 checkScore()
             }
         } 
-    }
+        function primeiraMao(){
+            $http({
+                url: 'https://deckofcardsapi.com/api/deck/'+idDeck+'/draw/?count=4',
+                method: 'GET'
+            })
+            .then((res) => {
+                //player
+            let p1 = valueCalculator(res.data.cards[0].value)
+                let p2 = valueCalculator(res.data.cards[1].value)
+    
+                let ACE
+                if(p1 == 1 || p2 == 1){
+                    ACE = true;
+                }
+    
+                cartas.push(p1)
+                cartas.push(p2)
+    
+                $scope.points += (p1 + p2)
+                if(ACE && $scope.points == 11){
+                    $scope.points = 21  
+                 
+                //Dealer
+              
+                let v1 = valueCalculator(res.data.cards[2].value)
+                let v2 = valueCalculator(res.data.cards[3].value)
+    
+                botCardsValue.push(v1)
+                botInitialValue = v2
+    
+                $scope.botPoints = v1
+            })
+        }
+   
+   
+    })
+
+
