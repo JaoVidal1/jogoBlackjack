@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Syne">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <title>Links website</title>
+      <style>
+      
+      body {
+      font-family: 'Syne', sans-serif; 
+      background-color: #074718;
+          }
+      
+      .container {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+      
+      .image-container {
+        text-align: center;
+        width: 100%;
+      }
+      .fcc-btn {
+  background-color: #199319;
+  color: white;
+  padding: 15px 25px;
+  text-decoration: none;
+}
+      
+      .links-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+      
+      </style>
+    </head>
+  
+  
+    <body class="w3-white">
+        <!-- Image and name container. Change to your picture here. -->
+      <div class="image-container">
+      <img src="https://play-lh.googleusercontent.com/009hpXoLRxULWBEF8VsHnNTjFrOQVFKfkQfIxZcDGWtVSZEU5mKtSJyy3Zv3pxVcZQ" class="w3-margin" alt="Person" max-width="100%" height="150px" style="border-radius: 50%;">
+      
+       <!-- Content. Add your bio here. -->
+       <div class="w3-margin">
+       <h2 class="w3-text-black"><strong>BlackJack</strong></h2>
+       
+       </div>
+       <p class="text-white fs-2 text-center">Sua pontuação: {{pontos}}</p>
+       <p class="text-white fs-2 text-center">Pontuação do dealer: {{Dpontos}}</p>
+  
+      <!-- Links section 1. Replace the # inside of the "" with your links. -->
+      <div class="links-container">
+        <button type="button" class="btn-success" ng-click="novoDeck()">Novo Jogo</button>
+        <button type="button" class="btn-success" ng-click="novaCarta()">Pedir</button> 
+        <button type="button" class="btn-success" ng-click="stop()">Parar</button>  
+        
+        
+      </div>
+  
+        
+  
+      
+  
+    </body>  
+  </html>
