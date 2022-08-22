@@ -109,6 +109,7 @@ angular.module('jogoBlackjack').controller('mainController', function($scope, $h
                 botInitialValue = v2
     
                 $scope.botPoints = v1
+            }
             })
         }
    
