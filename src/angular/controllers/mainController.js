@@ -1,5 +1,5 @@
-angular.module('jogoblackjack').controller('mainController', function($scope, $http, $timeout, userAPI){
-    angular.module('blackjack').controller('mainController', function($scope, $http, $timeout, userAPI){
+angular.module('jogoblackjack').controller('mainController', function($scope, $http){
+    
         var DCartas = 2
         var DCartasValor = []
         var cartas = []
@@ -56,7 +56,7 @@ angular.module('jogoblackjack').controller('mainController', function($scope, $h
                 }
             })
         }
-        $scope.stop = () => {
+        $scope.parar = () => {
             $scope.DCartas[1] = DealerCInicial
             DCartasValor.push(DealerVIniciaL)
     
@@ -78,4 +78,4 @@ angular.module('jogoblackjack').controller('mainController', function($scope, $h
                 checkScore()
             }
         } 
-        
+    }
