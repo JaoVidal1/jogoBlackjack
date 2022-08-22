@@ -21,7 +21,7 @@ angular.module('jogoblackjack').controller('mainController', function($scope, $h
             if(value === 'KING' || value === 'JACK' || value === 'QUEEN'){
                 return Number(10)
             }
-            else if(value === 'As'){
+            else if(value === 'ACE'){
                 return Number(1)
             }
             else{
@@ -35,7 +35,7 @@ angular.module('jogoblackjack').controller('mainController', function($scope, $h
                 method: 'GET'
             })
             .then((res) => {
-                
+                cardsValue.push(CalculaValor(res.data.cards[0].value))
     
                 let ACE
                 let count = 0;
@@ -58,7 +58,7 @@ angular.module('jogoblackjack').controller('mainController', function($scope, $h
         }
         $scope.stop = () => {
             $scope.DCartas[1] = DealerCInicial
-            botCardsValue.push(DealerVIniciaL)
+            DCartasValor.push(DealerVIniciaL)
     
             let DealerACE = false
             if(DealerVInicial == 1 || DCartasValor[0] == 1){
