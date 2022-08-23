@@ -5,6 +5,8 @@ angular.module('jogoBlackjack').controller('mainController', function($scope, $h
         var cartas = []
         var  DealerCInicial, idDeck, DealerVInicial
 
+        $scope.points = 0
+        $scope.DPoints = 0
         $scope.novoDeck = () => {
             $http({
                 url: 'https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1',
