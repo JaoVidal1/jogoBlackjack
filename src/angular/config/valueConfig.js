@@ -1,3 +1,3 @@
-angular.module("blackjack").value("config", {
+angular.module("jogoBlackjack").value("config", {
     baseUrl : "http://localhost:3000"
 })
