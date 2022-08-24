@@ -1,6 +1,12 @@
 <!DOCTYPE html>
   <html lang="en" ng-app="jogoBlackjack">
     <head>
+      <script src="node_modules\angular\angular.js"></script>
+      <script src="src\angular\config\valueConfig.js"></script>
+      <script src="src\angular\controllers\mainController.js"></script>  
+      <script src="src\app.js"></script>
+
+
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       
@@ -46,11 +52,9 @@
    
   
   
-    <body class="w3-white">
-      <script src="node_modules\angular\angular.js"></script>
-      <script src="src\angular\config\valueConfig.js"></script>
-      <script src="src\angular\controllers\mainController.js"></script>  
-      <script src="src\app.js"></script>
+    <body class="w3-white" ng-controller="mainController">
+      
+      
 
       <div class="image-container">
       <img src="https://play-lh.googleusercontent.com/009hpXoLRxULWBEF8VsHnNTjFrOQVFKfkQfIxZcDGWtVSZEU5mKtSJyy3Zv3pxVcZQ" class="w3-margin" alt="Person" max-width="100%" height="150px" style="border-radius: 50%;">
@@ -68,7 +72,7 @@
         <button type="button" class="btn-success" ng-click="novoDeck()">Novo Jogo</button>
         <button type="button" class="btn-success" ng-click="novaCarta()">Pedir</button> 
         <button type="button" class="btn-success" ng-click="parar()">Parar</button>  
-        <a class="fcc-btn" href="C:\Users\joao.vidal\Documents\jogoBlackjack\index.html">Voltar</a> 
+        <a class="fcc-btn" href="index.html">Voltar</a> 
         
       </div>
   
