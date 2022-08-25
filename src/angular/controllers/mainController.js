@@ -154,6 +154,12 @@ angular.module('jogoBlackjack').controller('mainController', function($scope, $h
            function pontos() {
             if(($scope.DPoints > 21 && $scope.points > 21) || ($scope.DPoints == $scope.points)){
            }
+        
+        
+        
+        
+        
+        }
  
 
    
