@@ -1,8 +1,8 @@
 angular.module('jogoBlackjack').controller('mainController', function($scope, $http){
     
-        var DCartas = 2
+        
         var DCartasValor = []
-        var cartas = []
+        var Vcartas = []
         var  DealerCInicial, idDeck, DealerVInicial
 
         $scope.points = 0
@@ -37,7 +37,7 @@ angular.module('jogoBlackjack').controller('mainController', function($scope, $h
                 method: 'GET'
             })
             .then((res) => {
-                cardsValue.push(CalculaValor(res.data.cards[0].value))
+                Vcartas.push(CalculaValor(res.data.cards[0].value))
     
                 let ACE
                 let count = 0;
@@ -60,7 +60,7 @@ angular.module('jogoBlackjack').controller('mainController', function($scope, $h
         }
         $scope.parar = () => {
             $scope.DCartas[1] = DealerCInicial
-            DCartasValor.push(DealerVIniciaL)
+            DCartasValor.push(DealerVInicial)
     
             let DealerACE = false
             if(DealerVInicial == 1 || DCartasValor[0] == 1){
@@ -74,7 +74,7 @@ angular.module('jogoBlackjack').controller('mainController', function($scope, $h
                 checkScore()
             }
             else if($scope.DPoints < 16 && $scope.DPoints < $scope.points){
-                newCardBot()
+                novaCartaD()
             } 
             else{
                 checkScore()
@@ -86,7 +86,7 @@ angular.module('jogoBlackjack').controller('mainController', function($scope, $h
                 method: 'GET'
             })
             .then((res) => {
-                //player
+                //Jogador
             let p1 = valueCalculator(res.data.cards[0].value)
                 let p2 = valueCalculator(res.data.cards[1].value)
     
@@ -95,8 +95,8 @@ angular.module('jogoBlackjack').controller('mainController', function($scope, $h
                     ACE = true;
                 }
     
-                cartas.push(p1)
-                cartas.push(p2)
+                Vcartas.push(p1)
+                Vcartas.push(p2)
     
                 $scope.points += (p1 + p2)
                 if(ACE && $scope.points == 11){
@@ -104,17 +104,58 @@ angular.module('jogoBlackjack').controller('mainController', function($scope, $h
                  
                 //Dealer
               
-                let v1 = valueCalculator(res.data.cards[2].value)
-                let v2 = valueCalculator(res.data.cards[3].value)
+                let v1 = valueCalculator(res.data.cartas[2].value)
+                let v2 = valueCalculator(res.data.cartas[3].value)
     
-                botCardsValue.push(v1)
-                botInitialValue = v2
+                DCartasValor.push(v1)
+                DealerVInicial = v2
     
                 $scope.botPoints = v1
             }
             })
         }
-   
+        
+        function novaCartaD(){
+            $http({
+                url: 'https://deckofcardsapi.com/api/deck/'+idDeck+'/draw/?count=1',
+                method: 'GET'
+            })
+            .then((res) => {
+                $scope.DCartas.push(res.data.cards[0].images.png)
+    
+                DCartasValor.push(CalculaValor(res.data.cards[0].value))
+                DCartas++;
+                
+                let DealerACE
+                let count = 0;
+                DCartasValor.forEach(carta => {
+                    count += carta
+    
+                    if(carta == 1){
+                        DealerACE = true
+                    }
+                });
+    
+                if(DealerACE && count <= 11){
+                    count += 10
+                }
+    
+                $scope.DPoints = count    
+                if($scope.DPoints > $scope.points && $scope.DPoints <= 21){
+                    pontos()
+                }        
+                else if((($scope.DPoints - (DCartas * 2)) <= 11) && DCartas < 6 && $scope.DPoints < 21 && $scope.DPoints < $scope.points && $scope.points <= 21){
+                    novaCartaD()
+                }else{
+                    pontos()
+                }
+            })
+        }
+           function pontos() {
+            if(($scope.DPoints > 21 && $scope.points > 21) || ($scope.DPoints == $scope.points)){
+           }
+ 
+
    
     })
 
