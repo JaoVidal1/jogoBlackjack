@@ -64,7 +64,9 @@
        <h2 class="w3-text-black"><strong>BlackJack</strong></h2>
        
        </div>
+       <p class="text-white fs-2 text-center">Carta: {{value}}</p>
        <p class="text-white fs-2 text-center">Sua pontuação: {{points}}</p>
+       <p class="text-white fs-2 text-center">Carta Dealer: {{DCartasValor}}</p>
        <p class="text-white fs-2 text-center">Pontuação do dealer: {{Dpontos}}</p>
   
       
@@ -72,6 +74,7 @@
         <button type="button" class="btn-success" ng-click="novoDeck()">Novo Jogo</button>
         <button type="button" class="btn-success" ng-click="novaCarta()">Pedir</button> 
         <button type="button" class="btn-success" ng-click="parar()">Parar</button>  
+        <p class="text-white fs-2 text-center">Resultado: {{vencedor}}</p>
         <a class="fcc-btn" href="index.html">Voltar</a> 
         
       </div>
