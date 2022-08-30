@@ -1,6 +1,6 @@
 angular.module('jogoBlackjack').controller('mainController', function ($scope, $http) {
 
-    var vencedor = 0
+    $scope.vencedor = 0
     var DCartasValor = []
     var Vcartas = []
     var DealerCInicial, idDeck, DealerVInicial
@@ -16,6 +16,7 @@ angular.module('jogoBlackjack').controller('mainController', function ($scope, $
                 idDeck = res.data.deck_id
                 $scope.points = 0
                 $scope.DPoints = 0
+                Vcartas = []
 
                 primeiraMao()
             })
@@ -60,7 +61,7 @@ angular.module('jogoBlackjack').controller('mainController', function ($scope, $
             })
     }
     $scope.parar = () => {
-        
+
 
         let DealerACE = false
         if (DealerVInicial == 1 || DCartasValor[0] == 1) {
@@ -101,17 +102,17 @@ angular.module('jogoBlackjack').controller('mainController', function ($scope, $
                 $scope.points += (p1 + p2)
                 if (ACE && $scope.points == 11) {
                     $scope.points = 21
-
-                    //Dealer
-
-                    let v1 = valueCalculator(res.data.cards[2].value)
-                    let v2 = valueCalculator(res.data.cards[3].value)
-
-                    DCartasValor.push(v1)
-                    
-                    DCartasValor.push(v2)
-                    $scope.DPoints = v1 + v2
                 }
+                //Dealer
+
+                let v1 = CalculaValor(res.data.cards[2].value)
+                let v2 = CalculaValor(res.data.cards[3].value)
+
+                DCartasValor.push(v1)
+
+                DCartasValor.push(v2)
+                $scope.DPoints = v1 + v2
+
             })
     }
 
@@ -121,10 +122,10 @@ angular.module('jogoBlackjack').controller('mainController', function ($scope, $
             method: 'GET'
         })
             .then((res) => {
-                $scope.DCartas.push(res.data.cards[0].images.png)
+                
 
                 DCartasValor.push(CalculaValor(res.data.cards[0].value))
-                DCartas++;
+                DCartasValor++;
 
                 let DealerACE
                 let count = 0;
@@ -144,35 +145,35 @@ angular.module('jogoBlackjack').controller('mainController', function ($scope, $
                 if ($scope.DPoints > $scope.points && $scope.DPoints <= 21) {
                     pontos()
                 }
-                else if ((($scope.DPoints - (DCartas * 2)) <= 11) && DCartas < 6 && $scope.DPoints < 21 && $scope.DPoints < $scope.points && $scope.points <= 21) {
+                else if ((($scope.DPoints - (DCartasValor * 2)) <= 11) && DCartasValor < 6 && $scope.DPoints < 21 && $scope.DPoints < $scope.points && $scope.points <= 21) {
                     novaCartaD()
                 } else {
                     pontos()
                 }
             })
     }
-    function pontos(vencedor) {
-        if (vencedor == 0) {
+    function pontos() {
+        if ($scope.vencedor == 0) {
             if (($scope.DPoints > 21 && $scope.points > 21) || ($scope.DPoints == $scope.points)) {
 
-                return String("Empate")
+                $scope.vencedor = "Empate"
             }
             else {
                 if ($scope.points > $scope.DPoints) {
                     if ($scope.points > 21) {
-                        return String("Derrota")
+                        $scope.vencedor = "Derrota"
                     }
                     else {
-                        return String("Vitória")
+                        $scope.vencedor = "Vitória"
                     }
                 }
                 else {
                     if ($scope.DPoints > 21) {
-                        return String("Vitória")
+                        $scope.vencedor = "Vitória"
 
                     }
                     else {
-                        return String("Derrota")
+                        $scope.vencedor = "Derrota"
                     }
                 }
 
