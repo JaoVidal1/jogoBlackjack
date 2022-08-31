@@ -31,9 +31,23 @@ describe('Controllers', function () {
 
       });
       });
-
-
-
+      
+      
+      it('Valor das Cartas', function () {
+        const receive = newControllerInstance('jogoBlackjack');
+        receive.points = 0;
+        receive.cards = [];
+    
+        expect(receive.points).toEqual(0);
+        expect(receive.cards).toEqual([]);
+      });
+    
+      it('Função Parar', function () {
+        const fparar = newControllerInstance();
+        fparar.Vcarta = 13;
+        fparar.parar();
+        expect(fparar.getResultMessage).toEqual('Vitória');
+      });
 
 
 
