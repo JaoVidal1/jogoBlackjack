@@ -125,7 +125,7 @@ angular.module('jogoBlackjack').controller('mainController', function ($scope, $
                 
 
                 DCartasValor.push(CalculaValor(res.data.cards[0].value))
-                DCartasValor++;
+                
 
                 let DealerACE
                 let count = 0;
@@ -145,7 +145,7 @@ angular.module('jogoBlackjack').controller('mainController', function ($scope, $
                 if ($scope.DPoints > $scope.points && $scope.DPoints <= 21) {
                     pontos()
                 }
-                else if ((($scope.DPoints - (DCartasValor * 2)) <= 11) && DCartasValor < 6 && $scope.DPoints < 21 && $scope.DPoints < $scope.points && $scope.points <= 21) {
+                else if ($scope.Dpoints <21) {
                     novaCartaD()
                 } else {
                     pontos()
